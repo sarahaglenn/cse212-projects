@@ -1,3 +1,5 @@
+using System.Globalization;
+
 public static class ArraySelector
 {
     public static void Run()
@@ -11,6 +13,21 @@ public static class ArraySelector
 
     private static int[] ListSelector(int[] list1, int[] list2, int[] select)
     {
-        return [];
+        int l1index = 0;
+        int l2index = 0;
+        var results = new int[select.Length];
+        for (var i = 0; i <select.Length; i++)
+        {
+            if (select[i] == 1)
+            {
+                results[i] = list1[l1index];
+                l1index++;
+            }
+            else{
+                results[i] = list2[l2index];
+                l2index++;
+            }
+        }
+        return results;
     }
 }

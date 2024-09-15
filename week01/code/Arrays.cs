@@ -1,3 +1,8 @@
+using System.Diagnostics;
+using System.Globalization;
+using System.Runtime;
+using Microsoft.VisualStudio.TestPlatform.ObjectModel.Client;
+
 public static class Arrays
 {
     /// <summary>
@@ -9,11 +14,19 @@ public static class Arrays
     public static double[] MultiplesOf(double number, int length)
     {
         // TODO Problem 1 Start
-        // Remember: Using comments in your program, write down your process for solving this problem
-        // step by step before you write the code. The plan should be clear enough that it could
-        // be implemented by another person.
-
-        return []; // replace this return statement with your own
+        // Create an empty array with length = length given
+        double[] result = new double[length];
+        // Add the given number to the first position of the array
+        result[0] = number;
+        // Use a for loop with an index equal to one, as long as the index is 
+        // less than the length given -->
+        for (int i = 1; i < length; i++) {
+            // Add the number multiplied by (the current index + 1) to the current index
+            // position of the array
+            result[i] = number * (i + 1);
+        }
+        // Outside of the loop, return the array created
+        return result;
     }
 
     /// <summary>
@@ -26,8 +39,21 @@ public static class Arrays
     public static void RotateListRight(List<int> data, int amount)
     {
         // TODO Problem 2 Start
-        // Remember: Using comments in your program, write down your process for solving this problem
-        // step by step before you write the code. The plan should be clear enough that it could
-        // be implemented by another person.
+        // Split the array into two separate lists
+        // Starting at index zero and collecting (count - amount) elements will be the 
+        // ending of the new array
+        List<int> ending = data.GetRange(0, data.Count - amount);
+        // The items from index = (count - amount) to the end of the array will be the first
+        // part of the new array. (the number of elements is equal to the size of the shift)
+        List<int> starting = data.GetRange(data.Count - amount, amount);
+        // Clear the elements from the original list
+        data.Clear();
+        // Combine the two lists in the correct order
+        foreach (int num in starting) {
+            data.Add(num);
+        }
+        foreach (int num in ending) {
+            data.Add(num);
+        }
     }
 }
