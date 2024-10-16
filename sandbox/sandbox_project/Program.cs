@@ -1,4 +1,6 @@
 using System;
+using System.Reflection.Metadata.Ecma335;
+using System.Security.Cryptography.X509Certificates;
 
 public class Program
 {
@@ -9,5 +11,12 @@ public class Program
         // one of your projects.
 
         Console.WriteLine("Hello Sandbox World!");
+    }
+    public int SumOfOneToN(int n) {
+        if (n == 1)
+        {
+            return 1;
+        }
+        return n + SumOfOneToN(n - 1);
     }
 }
